@@ -1,19 +1,4 @@
-class Money
-  attr_reader :amount, :currency
-
-  def initialize(amount:, currency:)
-    @amount = amount
-    @currency = currency
-  end
-
-  def inspect
-    "#{amount} #{currency.upcase}"
-  end
-
-  def +(other_money)
-    self.class.new(amount: amount + other_money.amount, currency: currency)
-  end
-end
+require "./money"
 
 describe Money do
   describe "#inspect" do
@@ -23,6 +8,16 @@ describe Money do
       result = money.inspect
 
       expect(result).to eq("10 USD")
+    end
+  end
+
+  describe "#to_str" do
+    it "implicitly converts to a String" do
+      ten_dollars = Money.new(amount: 10, currency: :usd)
+
+      result = String(ten_dollars)
+
+      expect(result).to be_a(String)
     end
   end
 
