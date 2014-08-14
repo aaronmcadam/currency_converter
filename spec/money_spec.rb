@@ -6,7 +6,7 @@ class Money
     @currency = currency
   end
 
-  def to_s
+  def inspect
     "#{amount} #{currency.upcase}"
   end
 
@@ -16,11 +16,11 @@ class Money
 end
 
 describe Money do
-  describe "#to_s" do
+  describe "#inspect" do
     it "outputs the amount and the currency" do
       money = Money.new(amount: 10, currency: :usd)
 
-      result = money.to_s
+      result = money.inspect
 
       expect(result).to eq("10 USD")
     end
@@ -32,7 +32,7 @@ describe Money do
         ten_dollars = Money.new(amount: 10, currency: :usd)
         twenty_dollars = Money.new(amount: 20, currency: :usd)
 
-        result = (ten_dollars + twenty_dollars).to_s
+        result = (ten_dollars + twenty_dollars).inspect
 
         expect(result).to eq("30 USD")
       end
